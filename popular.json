@@ -1,0 +1,126 @@
+{
+  "status": "success",
+  "message": "All Time Popular Anime",
+  "data": [
+    {
+      "number": 1,
+      "anilist_id": 16498,
+      "animepahe_session_id": "7ff2101d-5ff6-03f0-9584-e15c43fb8d7c",
+      "title": "Attack on Titan"
+    },
+    {
+      "number": 2,
+      "anilist_id": 101922,
+      "animepahe_session_id": "8d0c8929-47e2-a116-8c83-5b83afec7b1e",
+      "title": "Demon Slayer: Kimetsu no Yaiba"
+    },
+    {
+      "number": 3,
+      "anilist_id": 1535,
+      "animepahe_session_id": "a50c159e-da7d-aad4-479a-1f9aa2a582b9",
+      "title": "Death Note"
+    },
+    {
+      "number": 4,
+      "anilist_id": 113415,
+      "animepahe_session_id": "f17542f8-906c-d63f-8f67-1ff083867bc6",
+      "title": "JUJUTSU KAISEN"
+    },
+    {
+      "number": 5,
+      "anilist_id": 21459,
+      "animepahe_session_id": "8ff35baa-e854-df41-be89-e25f64e6546d",
+      "title": "My Hero Academia"
+    },
+    {
+      "number": 6,
+      "anilist_id": 11061,
+      "animepahe_session_id": "df337ebc-7f73-0f3b-516d-6ebd5808590d",
+      "title": "Hunter x Hunter (2011)"
+    },
+    {
+      "number": 7,
+      "anilist_id": 21087,
+      "animepahe_session_id": "1d46b7b2-8b7f-00d2-72c2-dc98ee9bd3e4",
+      "title": "One-Punch Man"
+    },
+    {
+      "number": 8,
+      "anilist_id": 20605,
+      "animepahe_session_id": "b5093321-dfa7-2127-816a-29a69d7e7057",
+      "title": "Tokyo Ghoul"
+    },
+    {
+      "number": 9,
+      "anilist_id": 11757,
+      "animepahe_session_id": "23e0bbbb-9b8d-5aa5-f5a7-707bdecd296e",
+      "title": "Sword Art Online"
+    },
+    {
+      "number": 10,
+      "anilist_id": 21,
+      "animepahe_session_id": "d58fc9f8-582e-fdf0-3618-112cd54ed5ab",
+      "title": "ONE PIECE"
+    },
+    {
+      "number": 11,
+      "anilist_id": 5114,
+      "animepahe_session_id": "00f27285-dd2b-3dde-9644-a76279fc1282",
+      "title": "Fullmetal Alchemist: Brotherhood"
+    },
+    {
+      "number": 12,
+      "anilist_id": 20,
+      "animepahe_session_id": "78e38106-d9f3-a8b5-7974-9702f603dc96",
+      "title": "Naruto"
+    },
+    {
+      "number": 13,
+      "anilist_id": 101759,
+      "animepahe_session_id": "7149380e-3fb1-2f31-b184-8380a78a2415",
+      "title": "The Promised Neverland"
+    },
+    {
+      "number": 14,
+      "anilist_id": 20755,
+      "animepahe_session_id": "9235d62a-3710-e5b8-1be7-7858b5865d31",
+      "title": "Assassination Classroom"
+    },
+    {
+      "number": 15,
+      "anilist_id": 21507,
+      "animepahe_session_id": "b3c07d26-ebc9-0b76-769a-ba221262c21c",
+      "title": "Mob Psycho 100"
+    },
+    {
+      "number": 16,
+      "anilist_id": 20665,
+      "animepahe_session_id": "0a74a796-c127-b2f1-d777-97b7778c1333",
+      "title": "Your lie in April"
+    },
+    {
+      "number": 17,
+      "anilist_id": 21234,
+      "animepahe_session_id": "b73cf0a8-85e5-c240-2a02-fc04672577c1",
+      "title": "ERASED"
+    },
+    {
+      "number": 18,
+      "anilist_id": 21355,
+      "animepahe_session_id": "d800c1b6-51ac-2e0f-5e73-70726a0661f7",
+      "title": "Re:ZERO -Starting Life in Another World-"
+    },
+    {
+      "number": 19,
+      "anilist_id": 9253,
+      "animepahe_session_id": "4e09a245-4ba5-754d-5e25-5dafd815e359",
+      "title": "Steins;Gate"
+    },
+    {
+      "number": 20,
+      "anilist_id": 20464,
+      "animepahe_session_id": "98a7ea7c-3ba2-de14-7e4c-d4999b259083",
+      "title": "HAIKYU!!"
+    }
+  ]
+}
