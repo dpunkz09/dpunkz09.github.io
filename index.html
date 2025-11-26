@@ -3,120 +3,430 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlixWorld App - Ad-Free Movie Streaming</title>
+  <title>RTL Dekalb White Guide</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
-      background: #0e0e0e;
-      color: #ffffff;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top left, #e8f5e9 0, #ffffff 55%, #f1f8e9 100%);
+      color: #333;
     }
 
-    .hero {
-      background: url('your-background-image.jpg') no-repeat center center/cover;
+    header {
+      background: linear-gradient(90deg, #2e7d32, #4CAF50, #66bb6a);
+      padding: 18px 16px;
       text-align: center;
-      padding: 80px 20px;
+      color: #FFF;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
     }
 
-    .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #ffffff;
+    .page {
+      max-width: 1040px;
+      margin: 20px auto 32px;
+      padding: 0 16px 24px;
     }
 
-    .hero p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      color: #dddddd;
-    }
-
-    .btn-download {
-      background: #e50914;
-      color: #fff;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.1em;
-      text-decoration: none;
-    }
-
-    .features {
+    .tabs {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 50px 20px;
+      flex-wrap: wrap;
+      background: #4CAF50;
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
 
-    .features h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-
-    .features ul {
-      list-style: none;
-      padding: 0;
-      font-size: 1.1em;
-    }
-
-    .features li {
-      margin: 10px 0;
-    }
-
-    .screenshots {
-      margin: 40px 20px;
+    .tab {
+      flex: 1 1 33%;
       text-align: center;
+      padding: 12px;
+      color: #e8f5e9;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: background 0.3s, color 0.3s, border-bottom-color 0.3s;
+      font-size: 14px;
+      font-weight: 500;
     }
 
-    .screenshots img {
-      width: 200px;
-      margin: 10px;
-      border-radius: 10px;
+    .tab:hover {
+      background: #43a047;
     }
 
-    .footer {
-      text-align: center;
+    .tab.active {
+      background: #FFF;
+      color: #2e7d32;
+      border-bottom: 3px solid #2e7d32;
+      font-weight: 600;
+    }
+
+    .content {
       padding: 20px;
-      background: #111;
-      color: #888;
-      font-size: 0.9em;
+      background: #ffffff;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
     }
 
-    @media (min-width: 768px) {
-      .features {
-        flex-direction: row;
-        justify-content: space-around;
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 16px 18px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e0e0e0;
+    }
+
+    .card.highlight {
+      border-color: #4CAF50;
+      background: #f1f8e9;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: #e8f5e9;
+      color: #2e7d32;
+      margin-bottom: 6px;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h2 {
+      color: #4CAF50;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: #33691e;
+    }
+
+    p {
+      line-height: 1.5;
+      margin: 6px 0 8px;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid #4CAF50;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    th {
+      background: #4CAF50;
+      color: white;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 6px 0 10px;
+      font-size: 14px;
+    }
+
+    li + li {
+      margin-top: 4px;
+    }
+
+    .sub-note {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .badge-danger {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #ffebee;
+      color: #c62828;
+      margin-left: 6px;
+    }
+
+    .footer-note {
+      max-width: 1040px;
+      margin: 0 auto 18px;
+      padding: 0 18px;
+      font-size: 11px;
+      color: #777;
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        font-size: 18px;
+        padding: 14px 10px;
       }
 
-      .features ul {
-        text-align: left;
+      .tab {
+        flex: 1 1 100%;
+      }
+
+      .content {
+        padding: 16px 14px;
       }
     }
   </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>🎬 FlixWorld App is Here!</h1>
-    <p>Stream your favorite movies and series instantly. 100% ad-free, fast, and free to use.</p>
-    <a href="https://flixworld.xyz/flixworld.v1.0.apk" class="btn-download">Download Now</a>
-  </section>
+  <header>RTL Dekalb White Guide</header>
 
-  <section class="features">
-    <div>
-      <h2>🔥 Why Use Our App?</h2>
-      <ul>
-        <li>✅ No annoying ads</li>
-        <li>✅ Faster and smoother streaming</li>
-        <li>✅ Full HD content available</li>
-        <li>✅ Lightweight & easy to use</li>
-        <li>✅ Safe and secure APK</li>
-      </ul>
+  <div class="page">
+    <div class="tabs">
+      <div class="tab active" data-target="overview">Overview</div>
+      <div class="tab" data-target="diseases">Diseases & Treatment Guide</div>
+      <div class="tab" data-target="waste">Waste & Litter</div>
     </div>
-  </section>
 
+    <div class="content">
+      <!-- Overview -->
+      <div id="overview" class="section active">
+        <div class="card-grid">
+          <div class="card highlight">
+            <div class="pill">Layer Breed Profile</div>
+            <h2>Dekalb White — Summary</h2>
+            <ul>
+              <li><strong>Egg Production:</strong> 300–320 eggs/year (high & consistent)</li>
+              <li><strong>Egg Color:</strong> White, uniform shell quality</li>
+              <li><strong>Feed Efficiency:</strong> Very efficient (low FCR, tipid sa pakain)</li>
+              <li><strong>Temperament:</strong> Calm, less aggressive (maganda sa masiksik na kulungan)</li>
+              <li><strong>Body Weight:</strong> 1.5–1.7 kg (lean, pang-itlog talaga)</li>
+              <li><strong>Start of Lay:</strong> 18–19 weeks (mas maagang mang-itlog)</li>
+            </ul>
+          </div>
 
-  <footer class="footer">
-    &copy; 2025 FlixWorld. All rights reserved.
-  </footer>
+          <div class="card">
+            <div class="pill">Dual-Purpose Type</div>
+            <h2>Rhode Island Red — Summary</h2>
+            <ul>
+              <li><strong>Egg Production:</strong> 220–260 eggs/year</li>
+              <li><strong>Egg Color:</strong> Brown, good market preference</li>
+              <li><strong>Feed Efficiency:</strong> Higher consumption (mas malakas kumain)</li>
+              <li><strong>Temperament:</strong> Active, minsan aggressive (pihikan sa stocking density)</li>
+              <li><strong>Body Weight:</strong> 2–3 kg (pwedeng kaning-baboy / meat use)</li>
+              <li><strong>Start of Lay:</strong> 20–22 weeks</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 18px;">
+          <div class="pill">Quick Comparison</div>
+          <h3>Dekalb White vs Rhode Island Red</h3>
+          <table>
+            <tr><th>Feature</th><th>Dekalb White</th><th>Rhode Island Red</th></tr>
+            <tr><td>Egg Production</td><td>300–320</td><td>220–260</td></tr>
+            <tr><td>Egg Color</td><td>White</td><td>Brown</td></tr>
+            <tr><td>Maturity</td><td>18–19 wks</td><td>20–22 wks</td></tr>
+            <tr><td>Feed Consumption</td><td>Low (high efficiency)</td><td>Higher</td></tr>
+            <tr><td>Climate Tolerance</td><td>Sensitive to extreme heat</td><td>More resilient</td></tr>
+          </table>
+          <p class="sub-note">
+            *Kung ang goal mo ay <strong>maximum egg production</strong> at tipid sa feed, mas bagay ang <strong>Dekalb White</strong>.
+            Kung gusto mo naman ng <strong>mas mabigat na manok</strong> na puwede ring i-benta bilang meat, ok ang <strong>Rhode Island Red</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Diseases -->
+      <div id="diseases" class="section">
+        <div class="card highlight">
+          <div class="pill">Health & Treatment Guide</div>
+          <h2>Common Diseases — Mga Gamot at Paano Gamitin</h2>
+          <p class="sub-note">
+            *Dosing ay depende sa brand / concentrate ng gamot. Laging sundin ang label at kung may duda, kumonsulta sa licensed veterinarian.
+          </p>
+        </div>
+
+        <div class="card-grid" style="margin-top: 14px;">
+          <div class="card">
+            <h3>Respiratory Diseases</h3>
+            <p><strong>Newcastle Disease (ND)</strong> <span class="badge-danger">Viral</span></p>
+            <ul>
+              <li>Mga sintomas: sabay-sabay na paghingal, hirap huminga, pag-ikot ng leeg, biglang bagsak ang production.</li>
+              <li><strong>Gamot:</strong> Walang direct cure (viral). Supportive lang:
+                <ul>
+                  <li>Bigyan ng electrolytes + multivitamins sa tubig 5–7 days.</li>
+                  <li>Isolate ang malalalang kaso para di makapanghawa.</li>
+                  <li>Panatilihin ang <strong>mahigpit na biosecurity</strong> (footbath, limit bisita, disinfection).</li>
+                </ul>
+              </li>
+              <li><strong>Prevention:</strong> Regular vaccination program (ND-B1, Lasota, o ayon sa vet schedule).</li>
+            </ul>
+
+            <p><strong>CRD (Mycoplasma)</strong> — Chronic Respiratory Disease</p>
+            <ul>
+              <li>Mga sintomas: hingal, sipon, paghingal na may “rattling” sound, mabagal ang laki.</li>
+              <li><strong>Gamot:</strong> Tylosin o Doxycycline 3–5 days sa inuming tubig (dose ayon sa label).</li>
+              <li>Dagdagan ng vitamins A, D, E at electrolytes para sa mabilis na recovery.</li>
+            </ul>
+
+            <p><strong>Infectious Coryza</strong></p>
+            <ul>
+              <li>Mga sintomas: namamagang mukha (swollen face), mabahong sipon, hirap huminga, nakayukong postura.</li>
+              <li><strong>Gamot:</strong> Combination antibiotics laban sa Coryza (hal. Sulfa-based o Amoxicillin + supportive care).</li>
+              <li><strong>Management:</strong> I-isolate ang apektadong grupo, linisin at i-disinfect ang kulungan, palitan ang basa at maruming litter.</li>
+              <li><strong>Prevention:</strong> May available na Coryza vaccine; gamitin lalo na sa mga area na may history na ng sakit.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Digestive & Internal Issues</h3>
+            <p><strong>Coccidiosis</strong></p>
+            <ul>
+              <li>Mga sintomas: dugo o dark na dumi, nakayuko, nakatigil, payat, basa ang puwitan.</li>
+              <li><strong>Gamot:</strong> Amprolium 5–7 days sa tubig (ayon sa dosage ng brand).</li>
+              <li>Pagkatapos ng gamutan, bigyan ng B-complex + probiotics 3–5 days para ma-restore ang gut health.</li>
+              <li><strong>Prevention:</strong> Panatilihing tuyo ang litter, huwag hayaang laging basa ang paligid ng inuman.</li>
+            </ul>
+
+            <p><strong>Worms (Internal Parasites)</strong></p>
+            <ul>
+              <li>Mga sintomas: payat kahit kumakain, dull na balahibo, mababang egg production.</li>
+              <li><strong>Gamot:</strong> Fenbendazole o Albendazole ayon sa timbang / label dose.</li>
+              <li><strong>Schedule:</strong> Deworm every 2–3 months lalo na sa free-range o outdoor setup.</li>
+            </ul>
+
+            <h3>Viral Disease — Fowl Pox (Bulas / Tagyawat)</h3>
+            <p><strong>Fowl Pox</strong> <span class="badge-danger">Viral</span></p>
+            <ul>
+              <li>Mga sintomas: parang tagyawat o kulugo sa palibot ng mata, balikat, balbas, at minsan sa loob ng bibig.</li>
+              <li><strong>Gamot:</strong> Walang direct cure (viral). Supportive care:
+                <ul>
+                  <li>Topical iodine o antiseptic sa mga sugat para maiwasan ang secondary infection.</li>
+                  <li>Vitamins A at multivitamins sa tubig 5–7 days.</li>
+                </ul>
+              </li>
+              <li><strong>Prevention:</strong> Fowl Pox vaccine (wing-web method) sa tamang age ayon sa program.</li>
+              <li>Kontrolin ang lamok at langaw dahil sila ang posibleng carrier.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>External Parasites</h3>
+            <p><strong>Mites / Lice (Kuto at Garapata)</strong></p>
+            <ul>
+              <li>Mga sintomas: balahibong nalalagas, hindi mapakali, poor feather condition, ayaw pumasok sa perch.</li>
+              <li><strong>Gamot:</strong>
+                <ul>
+                  <li>Ivermectin (ayon sa label — drops sa balat o sa drinking water, depende sa formulation).</li>
+                  <li>Pwede ring gumamit ng sulfur powder / approved poultry dust sa perches at nesting boxes.</li>
+                  <li>Disinfect ang kulungan, pugad, perches, at paligid.</li>
+                </ul>
+              </li>
+              <li><strong>Prevention:</strong> Regular cleaning at pag-spray ng approved insecticide sa kulungan (off-bird).</li>
+            </ul>
+
+            <h3>General Rules sa Pag-gagamot</h3>
+            <ul>
+              <li>Huwag pagsabayin ang <strong>vitamins at antibiotics</strong> sa iisang tubig (maliban kung inirekomenda ng vet) para hindi mag-neutralize ang epekto.</li>
+              <li>Gumamit ng <strong>water-soluble meds</strong> para madaling maibigay sa buong flock.</li>
+              <li>Observe <strong>withdrawal period</strong> 3–14 days (depende sa gamot) bago magbenta o kumain ng itlog / karne.</li>
+              <li>Ayusin ang <strong>ventilation, stocking density, at cleanliness</strong> dahil malaking tulong ito sa pag-iwas sa karamihan ng sakit.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Waste & Litter Management -->
+      <div id="waste" class="section">
+        <div class="card highlight">
+          <div class="pill">Farm Hygiene</div>
+          <h2>Waste & Litter Management</h2>
+          <p>Malaking bahagi ng kalusugan ng manok ang maayos na litter management. Kung kontrolado ang <strong>amoy, moisture, at langaw</strong>, bababa rin ang tsansa ng sakit.</p>
+        </div>
+
+        <div class="card-grid" style="margin-top: 14px;">
+          <div class="card">
+            <h3>Paano Maiiwasan ang Langaw at Amoy</h3>
+            <ul>
+              <li>Huwag hayaang maipon ang basang dumi at tira-tirang pakain.</li>
+              <li>Siguraduhin na may maayos na daloy ng hangin sa kulungan.</li>
+              <li>Itakda ang regular na schedule ng paglilinis (daily light cleaning, weekly deep cleaning).</li>
+            </ul>
+
+            <h3>Keep Litter Dry</h3>
+            <ul>
+              <li>Gumamit ng <strong>rice hulls</strong> o ipa bilang litter material.</li>
+              <li>Iwasan ang tagas sa inuman; ilagay sa tamang taas para hindi laging natatapakan.</li>
+              <li>Palitan agad ang mga basang spots lalo na sa ilalim ng inuman.</li>
+              <li>I-turn o haluin ang litter 2–3 beses kada linggo para hindi magsiksikan ang dumi sa ilalim.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Odor Control</h3>
+            <ul>
+              <li>Maglagay ng manipis na layer ng <strong>agricultural lime</strong> sa mga basang parte (iwas sa direct contact sa manok).</li>
+              <li>Gumamit ng <strong>EM1 / probiotic sprays</strong> 1x per week para tulungan i-breakdown ang dumi.</li>
+              <li>Magdagdag ng <strong>charcoal o biochar</strong> sa litter para sumipsip ng amoy at moisture.</li>
+            </ul>
+
+            <h3>Fly Control</h3>
+            <ul>
+              <li>Panatilihing tuyo at hindi naiipon ang manure.</li>
+              <li>Gumamit ng sticky traps o bottle traps sa paligid ng kulungan.</li>
+              <li>Siguraduhin ang maayos na ventilation at hindi nakukulong ang amoy sa loob.</li>
+              <li>Agad alisin ang spilled feed dahil ito ang paboritong puntahan ng langaw at daga.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Field guide only — hindi kapalit ng professional veterinary advice. I-adjust ang programa base sa actual farm situation.
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(sec => sec.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
