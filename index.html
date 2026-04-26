@@ -1,438 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RTL Dekalb White Guide</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LayerTrack | Poultry operations app</title>
+  <meta name="description" content="LayerTrack helps poultry farms manage flocks, egg production, feed usage, sales, and customer records in one mobile app.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LayerTrack | Poultry operations app">
+  <meta property="og:description" content="Run poultry operations from your pocket. Track production, feed, sales, and farm performance.">
+  <meta property="og:image" content="./assets/logo.png">
+  <meta property="og:url" content="https://layertrack.flixworld.xyz/">
   <style>
+    :root {
+      color-scheme: light;
+      --bg: #fdfdfc;
+      --surface: #ffffff;
+      --text: #1b1b18;
+      --muted: #706f6c;
+      --border: #e3e3e0;
+      --accent: #111827;
+      --chip: #f7f7f5;
+    }
+    .dark {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --surface: #161615;
+      --text: #ededec;
+      --muted: #a1a09a;
+      --border: #3e3e3a;
+      --accent: #ededec;
+      --chip: #0f0f0f;
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top left, #e8f5e9 0, #ffffff 55%, #f1f8e9 100%);
-      color: #333;
-    }
-
-    .page {
-      max-width: 1040px;
-      margin: 20px auto 32px;
-      padding: 0 16px 24px;
-    }
-
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      background: #4CAF50;
-      border-radius: 10px 10px 0 0;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-
-    .tab {
-      flex: 1 1 33%;
-      text-align: center;
-      padding: 12px;
-      color: #e8f5e9;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: background 0.3s, color 0.3s, border-bottom-color 0.3s;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .tab:hover {
-      background: #43a047;
-    }
-
-    .tab.active {
-      background: #FFF;
-      color: #2e7d32;
-      border-bottom: 3px solid #2e7d32;
-      font-weight: 600;
-    }
-
-    .content {
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: #fafafa;
-      border-radius: 10px;
-      padding: 16px 18px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-      border: 1px solid #e0e0e0;
-    }
-
-    .card.highlight {
-      border-color: #4CAF50;
-      background: #f1f8e9;
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: #e8f5e9;
-      color: #2e7d32;
-      margin-bottom: 6px;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    h2 {
-      color: #4CAF50;
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    h3 {
-      margin-top: 18px;
-      margin-bottom: 8px;
-      color: #33691e;
-    }
-
-    p {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.5;
-      margin: 6px 0 8px;
-      font-size: 14px;
     }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(8px);
     }
-
-    table, th, td {
-      border: 1px solid #4CAF50;
+    .nav-in { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px 0; flex-wrap: wrap; }
+    .brand { display: flex; gap: 10px; align-items: center; font-weight: 800; }
+    .brand img { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
+    .links { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .links a, .links button {
+      border: 0; background: transparent; color: var(--muted); font-weight: 700;
+      padding: 8px 12px; border-radius: 10px; cursor: pointer;
     }
+    .links a:hover, .links button:hover { background: color-mix(in srgb, var(--text) 7%, transparent); color: var(--text); }
 
-    th, td {
-      padding: 8px;
-      text-align: left;
-      font-size: 13px;
+    .hero { padding: 34px 0 26px; }
+    .pill { display: inline-block; border: 1px solid var(--border); background: var(--surface); color: var(--muted); border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+    h1 { margin: 14px 0 0; font-size: clamp(34px, 6vw, 60px); line-height: 1.05; }
+    .sub { margin-top: 14px; color: var(--muted); font-size: clamp(15px, 2vw, 19px); max-width: 760px; }
+
+    .cards3 { margin-top: 24px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+    .card { border: 1px solid var(--border); background: var(--surface); border-radius: 16px; padding: 16px; }
+    .num { font-size: 24px; font-weight: 900; }
+    .card h3 { margin: 6px 0 0; font-size: 16px; }
+    .card p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+
+    .section { padding: 18px 0; }
+    .section h2 { margin: 0; font-size: clamp(24px, 3.5vw, 34px); }
+    .section .lead { margin-top: 8px; color: var(--muted); }
+    .panel { border: 1px solid var(--border); background: var(--surface); border-radius: 16px; padding: 16px; margin-top: 14px; }
+
+    .shots { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin-top: 14px; }
+    .shot { min-width: 78%; scroll-snap-align: center; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); overflow: hidden; }
+    .shot-media { aspect-ratio: 9/19; background: var(--chip); }
+    .shot-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .only-dark { display: none; }
+    .dark .only-dark { display: block; }
+    .dark .only-light { display: none; }
+    .shot figcaption { padding: 10px 12px; font-weight: 700; font-size: 14px; }
+
+    .cta { margin: 22px 0 10px; border: 1px solid var(--border); background: linear-gradient(135deg,#1b1b18,#2d2d28); color: #fff; border-radius: 20px; padding: 22px; text-align: center; }
+    .cta a { margin-top: 10px; display: inline-block; background: #fff; color: #111; font-weight: 800; border-radius: 12px; padding: 10px 16px; }
+
+    .contact-form { display: grid; gap: 10px; margin-top: 10px; }
+    input, textarea {
+      width: 100%; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      border-radius: 10px; padding: 10px 12px; font: inherit;
     }
-
-    th {
-      background: #4CAF50;
-      color: white;
+    textarea { min-height: 120px; resize: vertical; }
+    .btn {
+      border: 0; background: #111827; color: #fff; font-weight: 800;
+      border-radius: 10px; padding: 10px 14px; cursor: pointer;
     }
+    .dark .btn { background: #ededec; color: #111; }
 
-    ul {
-      padding-left: 18px;
-      margin: 6px 0 10px;
-      font-size: 14px;
+    footer {
+      margin-top: 26px; border-top: 1px solid var(--border); padding: 16px 0 24px; text-align: center; color: var(--muted);
     }
+    footer .f-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; font-weight: 700; font-size: 13px; }
 
-    li + li {
-      margin-top: 4px;
+    @media (max-width: 840px) {
+      .cards3 { grid-template-columns: 1fr; }
+      .shot { min-width: 86%; }
     }
-
-    .sub-note {
-      font-size: 12px;
-      color: #666;
-    }
-
-    .badge-danger {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      background: #ffebee;
-      color: #c62828;
-      margin-left: 6px;
-    }
-
-    .footer-note {
-      max-width: 1040px;
-      margin: 0 auto 18px;
-      padding: 0 18px;
-      font-size: 11px;
-      color: #777;
-      text-align: right;
-    }
-
-    @media (max-width: 640px) {
-      .page {
-        margin-top: 10px;
-        padding: 0 0 20px;
-      }
-
-      .tabs {
-        border-radius: 0;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .tabs::-webkit-scrollbar {
-        display: none;
-      }
-
-      .tab {
-        flex: 0 0 auto;
-        padding: 10px 18px;
-        font-size: 13px;
-        white-space: nowrap;
-      }
-
-      .content {
-        padding: 16px 14px;
-        border-radius: 0;
-      }
+    @media (min-width: 900px) {
+      .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; }
+      .shot { min-width: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="tabs">
-      <div class="tab active" data-target="overview">Overview</div>
-      <div class="tab" data-target="diseases">Diseases & Treatment Guide</div>
-      <div class="tab" data-target="waste">Waste & Litter</div>
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a href="#home" class="brand">
+        <img src="./assets/logo.png" alt="LayerTrack logo">
+        <span>LayerTrack</span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About us</a>
+        <a href="#contact">Contact</a>
+        <a href="#get-started">Get started</a>
+        <a href="#terms">Terms</a>
+        <a href="#privacy">Privacy</a>
+        <button id="themeToggle" type="button">Toggle theme</button>
+      </nav>
     </div>
+  </header>
 
-    <div class="content">
-      <!-- Overview -->
-      <div id="overview" class="section active">
-        <div class="card-grid">
-          <div class="card highlight">
-            <div class="pill">Layer Breed Profile</div>
-            <h2>Dekalb White — Summary</h2>
-            <ul>
-              <li><strong>Egg Production:</strong> 300–320 eggs/year (high & consistent)</li>
-              <li><strong>Egg Color:</strong> White, uniform shell quality</li>
-              <li><strong>Feed Efficiency:</strong> Very efficient (low FCR, tipid sa pakain)</li>
-              <li><strong>Temperament:</strong> Calm, less aggressive (maganda sa masiksik na kulungan)</li>
-              <li><strong>Body Weight:</strong> 1.5–1.7 kg (lean, pang-itlog talaga)</li>
-              <li><strong>Start of Lay:</strong> 18–19 weeks (mas maagang mang-itlog)</li>
-            </ul>
-          </div>
+  <main class="wrap">
+    <section class="hero" id="home">
+      <span class="pill">Poultry operations, simplified</span>
+      <h1>Run the farm from your pocket.</h1>
+      <p class="sub">
+        Track flocks, log egg production, record sales and feed receipts, and keep customers organized in one practical mobile experience.
+      </p>
 
-          <div class="card">
-            <div class="pill">Dual-Purpose Type</div>
-            <h2>Rhode Island Red — Summary</h2>
-            <ul>
-              <li><strong>Egg Production:</strong> 220–260 eggs/year</li>
-              <li><strong>Egg Color:</strong> Brown, good market preference</li>
-              <li><strong>Feed Efficiency:</strong> Higher consumption (mas malakas kumain)</li>
-              <li><strong>Temperament:</strong> Active, minsan aggressive (pihikan sa stocking density)</li>
-              <li><strong>Body Weight:</strong> 2–3 kg (pwedeng kaning-baboy / meat use)</li>
-              <li><strong>Start of Lay:</strong> 20–22 weeks</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top: 18px;">
-          <div class="pill">Quick Comparison</div>
-          <h3>Dekalb White vs Rhode Island Red</h3>
-          <table>
-            <tr><th>Feature</th><th>Dekalb White</th><th>Rhode Island Red</th></tr>
-            <tr><td>Egg Production</td><td>300–320</td><td>220–260</td></tr>
-            <tr><td>Egg Color</td><td>White</td><td>Brown</td></tr>
-            <tr><td>Maturity</td><td>18–19 wks</td><td>20–22 wks</td></tr>
-            <tr><td>Feed Consumption</td><td>Low (high efficiency)</td><td>Higher</td></tr>
-            <tr><td>Climate Tolerance</td><td>Sensitive to extreme heat</td><td>More resilient</td></tr>
-          </table>
-          <p class="sub-note">
-            *Kung ang goal mo ay <strong>maximum egg production</strong> at tipid sa feed, mas bagay ang <strong>Dekalb White</strong>.
-            Kung gusto mo naman ng <strong>mas mabigat na manok</strong> na puwede ring i-benta bilang meat, ok ang <strong>Rhode Island Red</strong>.
-          </p>
-        </div>
+      <div class="cards3">
+        <article class="card">
+          <div class="num">01</div>
+          <h3>Flocks & production</h3>
+          <p>Manage flocks and capture egg output with clear daily records.</p>
+        </article>
+        <article class="card">
+          <div class="num">02</div>
+          <h3>Sales & customers</h3>
+          <p>Record egg sales, track customer details, and monitor payment status.</p>
+        </article>
+        <article class="card">
+          <div class="num">03</div>
+          <h3>Feed receipts</h3>
+          <p>Track feed purchases and connect costs to production insights.</p>
+        </article>
       </div>
+    </section>
 
-      <!-- Diseases -->
-      <div id="diseases" class="section">
-        <div class="card highlight">
-          <div class="pill">Health & Treatment Guide</div>
-          <h2>Common Diseases — Mga Gamot at Paano Gamitin</h2>
-          <p class="sub-note">
-            *Dosing ay depende sa brand / concentrate ng gamot. Laging sundin ang label at kung may duda, kumonsulta sa licensed veterinarian.
-          </p>
-        </div>
-
-        <div class="card-grid" style="margin-top: 14px;">
-          <div class="card">
-            <h3>Respiratory Diseases</h3>
-            <p><strong>Newcastle Disease (ND)</strong> <span class="badge-danger">Viral</span></p>
-            <ul>
-              <li>Mga sintomas: sabay-sabay na paghingal, hirap huminga, pag-ikot ng leeg, biglang bagsak ang production.</li>
-              <li><strong>Gamot:</strong> Walang direct cure (viral). Supportive lang:
-                <ul>
-                  <li>Bigyan ng electrolytes + multivitamins sa tubig 5–7 days.</li>
-                  <li>Isolate ang malalalang kaso para di makapanghawa.</li>
-                  <li>Panatilihin ang <strong>mahigpit na biosecurity</strong> (footbath, limit bisita, disinfection).</li>
-                </ul>
-              </li>
-              <li><strong>Prevention:</strong> Regular vaccination program (ND-B1, Lasota, o ayon sa vet schedule).</li>
-            </ul>
-
-            <p><strong>CRD (Mycoplasma)</strong> — Chronic Respiratory Disease</p>
-            <ul>
-              <li>Mga sintomas: hingal, sipon, paghingal na may “rattling” sound, mabagal ang laki.</li>
-              <li><strong>Gamot:</strong> Tylosin o Doxycycline 3–5 days sa inuming tubig (dose ayon sa label).</li>
-              <li>Dagdagan ng vitamins A, D, E at electrolytes para sa mabilis na recovery.</li>
-            </ul>
-
-            <p><strong>Infectious Coryza</strong></p>
-            <ul>
-              <li>Mga sintomas: namamagang mukha (swollen face), mabahong sipon, hirap huminga, nakayukong postura.</li>
-              <li><strong>Gamot:</strong> Combination antibiotics laban sa Coryza (hal. Sulfa-based o Amoxicillin + supportive care).</li>
-              <li><strong>Management:</strong> I-isolate ang apektadong grupo, linisin at i-disinfect ang kulungan, palitan ang basa at maruming litter.</li>
-              <li><strong>Prevention:</strong> May available na Coryza vaccine; gamitin lalo na sa mga area na may history na ng sakit.</li>
-            </ul>
+    <section class="section">
+      <h2>Mobile screenshots</h2>
+      <p class="lead">Light mode shows light screenshots, dark mode shows dark screenshots.</p>
+      <div class="shots">
+        <figure class="shot">
+          <div class="shot-media">
+            <img class="only-light" src="./assets/screenshots/dashboard-screen-light.webp" alt="Dashboard screenshot">
+            <img class="only-dark" src="./assets/screenshots/dashboard-screen-dark.webp" alt="Dashboard screenshot dark">
           </div>
-
-          <div class="card">
-            <h3>Digestive & Internal Issues</h3>
-            <p><strong>Coccidiosis</strong></p>
-            <ul>
-              <li>Mga sintomas: dugo o dark na dumi, nakayuko, nakatigil, payat, basa ang puwitan.</li>
-              <li><strong>Gamot:</strong> Amprolium 5–7 days sa tubig (ayon sa dosage ng brand).</li>
-              <li>Pagkatapos ng gamutan, bigyan ng B-complex + probiotics 3–5 days para ma-restore ang gut health.</li>
-              <li><strong>Prevention:</strong> Panatilihing tuyo ang litter, huwag hayaang laging basa ang paligid ng inuman.</li>
-            </ul>
-
-            <p><strong>Worms (Internal Parasites)</strong></p>
-            <ul>
-              <li>Mga sintomas: payat kahit kumakain, dull na balahibo, mababang egg production.</li>
-              <li><strong>Gamot:</strong> Fenbendazole o Albendazole ayon sa timbang / label dose.</li>
-              <li><strong>Schedule:</strong> Deworm every 2–3 months lalo na sa free-range o outdoor setup.</li>
-            </ul>
-
-            <h3>Viral Disease — Fowl Pox (Bulas / Tagyawat)</h3>
-            <p><strong>Fowl Pox</strong> <span class="badge-danger">Viral</span></p>
-            <ul>
-              <li>Mga sintomas: parang tagyawat o kulugo sa palibot ng mata, balikat, balbas, at minsan sa loob ng bibig.</li>
-              <li><strong>Gamot:</strong> Walang direct cure (viral). Supportive care:
-                <ul>
-                  <li>Topical iodine o antiseptic sa mga sugat para maiwasan ang secondary infection.</li>
-                  <li>Vitamins A at multivitamins sa tubig 5–7 days.</li>
-                </ul>
-              </li>
-              <li><strong>Prevention:</strong> Fowl Pox vaccine (wing-web method) sa tamang age ayon sa program.</li>
-              <li>Kontrolin ang lamok at langaw dahil sila ang posibleng carrier.</li>
-            </ul>
+          <figcaption>Dashboard</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-media">
+            <img class="only-light" src="./assets/screenshots/production-records-screen-light.webp" alt="Production records screenshot">
+            <img class="only-dark" src="./assets/screenshots/production-records-screen-dark.webp" alt="Production records screenshot dark">
           </div>
-
-          <div class="card">
-            <h3>External Parasites</h3>
-            <p><strong>Mites / Lice (Kuto at Garapata)</strong></p>
-            <ul>
-              <li>Mga sintomas: balahibong nalalagas, hindi mapakali, poor feather condition, ayaw pumasok sa perch.</li>
-              <li><strong>Gamot:</strong>
-                <ul>
-                  <li>Ivermectin (ayon sa label — drops sa balat o sa drinking water, depende sa formulation).</li>
-                  <li>Pwede ring gumamit ng sulfur powder / approved poultry dust sa perches at nesting boxes.</li>
-                  <li>Disinfect ang kulungan, pugad, perches, at paligid.</li>
-                </ul>
-              </li>
-              <li><strong>Prevention:</strong> Regular cleaning at pag-spray ng approved insecticide sa kulungan (off-bird).</li>
-            </ul>
-
-            <h3>General Rules sa Pag-gagamot</h3>
-            <ul>
-              <li>Huwag pagsabayin ang <strong>vitamins at antibiotics</strong> sa iisang tubig (maliban kung inirekomenda ng vet) para hindi mag-neutralize ang epekto.</li>
-              <li>Gumamit ng <strong>water-soluble meds</strong> para madaling maibigay sa buong flock.</li>
-              <li>Observe <strong>withdrawal period</strong> 3–14 days (depende sa gamot) bago magbenta o kumain ng itlog / karne.</li>
-              <li>Ayusin ang <strong>ventilation, stocking density, at cleanliness</strong> dahil malaking tulong ito sa pag-iwas sa karamihan ng sakit.</li>
-            </ul>
+          <figcaption>Production</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-media">
+            <img class="only-light" src="./assets/screenshots/sales-records-screen-light.webp" alt="Sales records screenshot">
+            <img class="only-dark" src="./assets/screenshots/sales-records-screen-dark.webp" alt="Sales records screenshot dark">
           </div>
-        </div>
+          <figcaption>Sales</figcaption>
+        </figure>
       </div>
+    </section>
 
-      <!-- Waste & Litter Management -->
-      <div id="waste" class="section">
-        <div class="card highlight">
-          <div class="pill">Farm Hygiene</div>
-          <h2>Waste & Litter Management</h2>
-          <p>Malaking bahagi ng kalusugan ng manok ang maayos na litter management. Kung kontrolado ang <strong>amoy, moisture, at langaw</strong>, bababa rin ang tsansa ng sakit.</p>
-        </div>
-
-        <div class="card-grid" style="margin-top: 14px;">
-          <div class="card">
-            <h3>Paano Maiiwasan ang Langaw at Amoy</h3>
-            <ul>
-              <li>Huwag hayaang maipon ang basang dumi at tira-tirang pakain.</li>
-              <li>Siguraduhin na may maayos na daloy ng hangin sa kulungan.</li>
-              <li>Itakda ang regular na schedule ng paglilinis (daily light cleaning, weekly deep cleaning).</li>
-            </ul>
-
-            <h3>Keep Litter Dry</h3>
-            <ul>
-              <li>Gumamit ng <strong>rice hulls</strong> o ipa bilang litter material.</li>
-              <li>Iwasan ang tagas sa inuman; ilagay sa tamang taas para hindi laging natatapakan.</li>
-              <li>Palitan agad ang mga basang spots lalo na sa ilalim ng inuman.</li>
-              <li>I-turn o haluin ang litter 2–3 beses kada linggo para hindi magsiksikan ang dumi sa ilalim.</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Odor Control</h3>
-            <ul>
-              <li>Maglagay ng manipis na layer ng <strong>agricultural lime</strong> sa mga basang parte (iwas sa direct contact sa manok).</li>
-              <li>Gumamit ng <strong>EM1 / probiotic sprays</strong> 1x per week para tulungan i-breakdown ang dumi.</li>
-              <li>Magdagdag ng <strong>charcoal o biochar</strong> sa litter para sumipsip ng amoy at moisture.</li>
-            </ul>
-
-            <h3>Fly Control</h3>
-            <ul>
-              <li>Panatilihing tuyo at hindi naiipon ang manure.</li>
-              <li>Gumamit ng sticky traps o bottle traps sa paligid ng kulungan.</li>
-              <li>Siguraduhin ang maayos na ventilation at hindi nakukulong ang amoy sa loob.</li>
-              <li>Agad alisin ang spilled feed dahil ito ang paboritong puntahan ng langaw at daga.</li>
-            </ul>
-          </div>
-        </div>
+    <section class="section" id="about">
+      <h2>About us</h2>
+      <div class="panel">
+        LayerTrack helps poultry farmers manage daily operations with accurate records for flocks, egg production, feed usage, sales, and customer tracking.
       </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="panel">
+        Need help with setup or account concerns? Send us a message:
+        <form class="contact-form">
+          <input placeholder="Your name" type="text" name="name">
+          <input placeholder="Your email" type="email" name="email">
+          <input placeholder="Subject" type="text" name="subject">
+          <textarea placeholder="Your message"></textarea>
+          <button class="btn" type="button">Send message</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="get-started">
+      <h2>Get started</h2>
+      <div class="panel">
+        <ol>
+          <li>Download the latest APK from your official website link.</li>
+          <li>Install the app and allow installation from this source if prompted.</li>
+          <li>Create your account and sign in.</li>
+          <li>Set egg prices, add your first flock, and log your first records.</li>
+        </ol>
+      </div>
+      <div class="cta">
+        <h3>Ready to use the app?</h3>
+        <p>Start with installation steps and first-time setup.</p>
+        <a href="https://layertrack.flixworld.xyz/get-started" target="_blank" rel="noopener">Open get started guide</a>
+      </div>
+    </section>
+
+    <section class="section" id="terms">
+      <h2>Terms of service</h2>
+      <div class="panel">
+        By using LayerTrack, you agree to use the app responsibly, keep your account secure, and avoid misuse of platform resources.
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <h2>Privacy policy</h2>
+      <div class="panel">
+        LayerTrack stores account and farm operation data you provide to deliver app features, dashboard insights, and support workflows.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="f-links">
+        <a href="#terms">Terms of service</a>
+        <a href="#privacy">Privacy policy</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="year"></span> LayerTrack</p>
     </div>
-  </div>
-
-  <div class="footer-note">
-    Field guide only — hindi kapalit ng professional veterinary advice. I-adjust ang programa base sa actual farm situation.
-  </div>
+  </footer>
 
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const sections = document.querySelectorAll('.section');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(sec => sec.classList.remove('active'));
-
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.target).classList.add('active');
-      });
-    });
+    (function () {
+      const k = "layertrack-theme";
+      const root = document.documentElement;
+      const btn = document.getElementById("themeToggle");
+      const saved = localStorage.getItem(k);
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (saved === "dark" || (!saved && prefersDark)) root.classList.add("dark");
+      if (btn) {
+        btn.addEventListener("click", function () {
+          root.classList.toggle("dark");
+          localStorage.setItem(k, root.classList.contains("dark") ? "dark" : "light");
+        });
+      }
+      var y = document.getElementById("year");
+      if (y) y.textContent = String(new Date().getFullYear());
+    })();
   </script>
 </body>
 </html>
+
